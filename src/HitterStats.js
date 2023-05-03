@@ -19,9 +19,41 @@ const HitterStats = ({ playerId }) => {
 
   const hittingStats = player.stats.find((stats) => stats.group.displayName === "hitting");
 
+  // Get the player's current team in 2023
+  const currentTeam = hittingStats.splits.find((split) => split.season === "2023").team;
+
+  // Get the player's position
+  const primaryPosition = player.primaryPosition.name;
+
+
+
   return (
     <div>
-      <h1>{player.fullName}</h1>
+            <div style={{ display: "flex", alignItems: "center" }}>
+                {/* Placeholder for player image */}
+                <img src="https://via.placeholder.com/100" alt="player" style={{ marginRight: "1rem" }} />
+
+                <h1>
+                    {/* Player name */}
+                    {player.fullName}
+
+                    {/* Player position and current team */}
+                    <span style={{ fontSize: "0.8rem", color: "gray", marginLeft: "1rem" }}>
+                        {primaryPosition} | {currentTeam ? currentTeam.name : "N/A"}
+                    </span>
+
+                </h1>
+
+                {/* Player stats summary */}
+                <div style={{ marginLeft: "auto" }}>
+                    <span>
+                        B/T: {player.batSide.description}/{player.pitchHand.description},
+                        Age: {player.currentAge}, Height: {player.height},
+                        Weight: {player.weight}, Year Drafted: {player.draftYear}
+                    </span>
+
+                </div>
+            </div>
       <table>
         <thead>
           <tr>
