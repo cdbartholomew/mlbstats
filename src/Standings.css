@@ -1,0 +1,9 @@
+.standings-wrapper {
+    display: flex;
+  }
+  
+  .standings-table {
+    float: left;
+    margin-right: 20px;
+  }
+  

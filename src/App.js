@@ -1,19 +1,24 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import HitterStats from "./HitterStats";
 import PitcherStats from "./PitcherStats";
-
-// Gausman 592332
-// Springer 543807
-// Bumgarner 518516
-// Ohtani 660271
-
-// Will need some logic to check if player is pitcher or hitter
+import Standings from "./Standings";
+import News from "./News";
+import HomePage from "./HomePage";
+import NavBar from "./NavBar";
 
 function App() {
   return (
-    <div className="App">
-      <PitcherStats playerId={660271} />
-    </div>
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/hitter-stats" element={<HitterStats playerId={543807}/>} />
+        <Route path="/pitcher-stats" element={<PitcherStats playerId={660271} />} />
+        <Route path="/standings" element={<Standings />} />
+        <Route path="/news" element={<News />} />
+      </Routes>
+    </Router>
   );
 }
 

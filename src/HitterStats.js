@@ -49,7 +49,7 @@ const HitterStats = ({ playerId }) => {
                     <span>
                         B/T: {player.batSide.description}/{player.pitchHand.description},
                         Age: {player.currentAge}, Height: {player.height},
-                        Weight: {player.weight}, Year Drafted: {player.draftYear}
+                        Weight: {player.weight}, Year Drafted: {player.draftYear || "Not Drafted"}
                     </span>
 
                 </div>
