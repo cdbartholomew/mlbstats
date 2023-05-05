@@ -22,6 +22,16 @@ function NavBar() {
             Hitters
           </Link>
         </li>
+        <li className="nav-item">
+        <Link to="/team-pitchers" className="nav-link">
+            Team Pitchers
+          </Link>
+        </li>
+        <li className="nav-item">
+        <Link to="/team-hitters" className="nav-link">
+            Team Hitters
+          </Link>
+        </li>
       </ul>
     </nav>
   );

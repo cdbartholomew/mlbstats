@@ -6,6 +6,8 @@ import Standings from "./Standings";
 import News from "./News";
 import HomePage from "./HomePage";
 import NavBar from "./NavBar";
+import RosterPitchers from "./PitcherRoster";
+import RosterHitters from "./HitterRoster";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/pitcher-stats" element={<PitcherStats playerId={660271} />} />
         <Route path="/standings" element={<Standings />} />
         <Route path="/news" element={<News />} />
+        <Route path="team-pitchers" element={<RosterPitchers teamId={141}/>} />
+        <Route path="team-hitters" element={<RosterHitters teamId={141}/>} />
       </Routes>
     </Router>
   );
