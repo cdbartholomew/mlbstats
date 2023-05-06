@@ -13,23 +13,8 @@ function NavBar() {
           </Link>
         </li>
         <li className="nav-item">
-        <Link to="/pitcher-stats" className="nav-link">
-            Pitchers
-          </Link>
-        </li>
-        <li className="nav-item">
-        <Link to="/hitter-stats" className="nav-link">
-            Hitters
-          </Link>
-        </li>
-        <li className="nav-item">
-        <Link to="/team-pitchers" className="nav-link">
-            Team Pitchers
-          </Link>
-        </li>
-        <li className="nav-item">
-        <Link to="/team-hitters" className="nav-link">
-            Team Hitters
+        <Link to="/leaderboard" className="nav-link">
+            Leaderboard
           </Link>
         </li>
       </ul>

@@ -8,6 +8,7 @@ import HomePage from "./HomePage";
 import NavBar from "./NavBar";
 import RosterPitchers from "./PitcherRoster";
 import RosterHitters from "./HitterRoster";
+import Leaderboard from "./Leaderboard";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/team-pitchers/:teamId" element={<RosterPitchers />} />
         <Route path="/team-hitters/:teamId" element={<RosterHitters />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
     </Router>
   );

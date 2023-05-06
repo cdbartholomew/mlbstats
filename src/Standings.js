@@ -15,68 +15,22 @@ function Standings() {
         const fetchData = async () => {
             const response = await axios.get('http://localhost:5000/standings/test');
             const data = response.data.records[0].teamRecords; //0-5 changes the divison
-            // console.log(data)
             setStandings0(data); // update state with the received data
+            const data1 = response.data.records[1].teamRecords; //0-5 changes the divison
+            setStandings1(data1); // update state with the received data
+            const data2 = response.data.records[2].teamRecords; //0-5 changes the divison
+            setStandings2(data2); // update state with the received data
+            const data3 = response.data.records[3].teamRecords; //0-5 changes the divison
+            setStandings3(data3); // update state with the received data
+            const data4 = response.data.records[4].teamRecords; //0-5 changes the divison
+            setStandings4(data4); // update state with the received data
+            const data5 = response.data.records[5].teamRecords; //0-5 changes the divison
+            setStandings5(data5); // update state with the received data
         };
-
-
         fetchData();
     }, []);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get('http://localhost:5000/standings/test');
-            const data = response.data.records[1].teamRecords; //0-5 changes the divison
-            // console.log(data)
-            setStandings1(data); // update state with the received data
-        };
 
-        fetchData();
-    }, []);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get('http://localhost:5000/standings/test');
-            const data = response.data.records[2].teamRecords; //0-5 changes the divison
-            // console.log(data)
-            setStandings2(data); // update state with the received data
-        };
-
-        fetchData();
-    }, []);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get('http://localhost:5000/standings/test');
-            const data = response.data.records[3].teamRecords; //0-5 changes the divison
-            // console.log(data)
-            setStandings3(data); // update state with the received data
-        };
-
-        fetchData();
-    }, []);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get('http://localhost:5000/standings/test');
-            const data = response.data.records[4].teamRecords; //0-5 changes the divison
-            // console.log(data)
-            setStandings4(data); // update state with the received data
-        };
-
-        fetchData();
-    }, []);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get('http://localhost:5000/standings/test');
-            const data = response.data.records[5].teamRecords; //0-5 changes the divison
-            // console.log(data)
-            setStandings5(data); // update state with the received data
-        };
-
-        fetchData();
-    }, []);
 
     return (
         <div className="standings-wrapper">

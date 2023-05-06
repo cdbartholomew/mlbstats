@@ -4,7 +4,7 @@ Python 3.x
 Node.js and npm
 
 # Setting up the server
-Run pip install -r requirements.txt to get the dependencies
+Run pip install -r requirements.txt to get the dependencies.
 Run app.py as this is the Flask server
 
 # Setting up the front end

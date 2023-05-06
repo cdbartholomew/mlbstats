@@ -99,6 +99,16 @@ def roster(team_id):
     else:
         return "Error: could not retrieve standings", 500
 
+@app.route('/leaderboard', methods=['GET'])
+def leaderboard():
+    url = f"https://statsapi.mlb.com/api/v1/stats/leaders?leaderCategories=hits,homeRuns,stolenBases,runsBattedIn,strikeouts,earnedRunAverage,battingAverage,saves&hydrate=person,team&limit=10&season=2023&sortColumn=hits&sortOrder=desc"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+      
+        return jsonify(data)
+    else:
+        return "Error: could not retrieve standings", 500
 
 
     
