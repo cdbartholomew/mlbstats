@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./PlayerStats.css"
+import { useParams, Link } from "react-router-dom";
 
-const PitcherStats = ({ playerId }) => {
+const PitcherStats = () => {
+    const { playerId } = useParams();
     const [player, setPlayer] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(`http://localhost:5000/player/${playerId}/stats?group=pitching&type=yearByYear`);
             setPlayer(response.data.people[0]);
+            console.log(response.data.people[0])
         };
 
         fetchData();
@@ -20,8 +23,26 @@ const PitcherStats = ({ playerId }) => {
 
     const pitchingStats = player.stats.find((stats) => stats.group.displayName === "pitching");
 
-    // Get the player's current team in 2023
-    const currentTeam = pitchingStats.splits.find((split) => split.season === "2023").team;
+    let currentTeam;
+
+    if (player.fullName === 'Jay Jackson') {
+        currentTeam = { id: 141, name: 'Toronto Blue Jays' };
+    } else if (player.fullName === 'Adam Wainwright' || player.fullName === 'James Naile') {
+        currentTeam = { id: 138, name: 'St. Louis Cardinals' };
+    } else if (player.fullName === 'Bennett Sousa') {
+        currentTeam = { id: 158, name: 'Milwaukee Brewers' };
+    } else {
+        const currentTeamSplit = pitchingStats.splits.find((split) => split.season === "2023");
+        if (currentTeamSplit) {
+            currentTeam = currentTeamSplit.team;
+        } else {
+            currentTeam = { id: 141, name: "N/A" };
+        }
+    }
+
+
+
+
 
     // Get the player's position
     const primaryPosition = player.primaryPosition.name;
@@ -32,7 +53,7 @@ const PitcherStats = ({ playerId }) => {
         <div>
             <div style={{ display: "flex", alignItems: "center" }}>
                 {/* Placeholder for player image */}
-                <img src="https://via.placeholder.com/100" alt="player" style={{ marginRight: "1rem" }} />
+                <img src={`https://content.mlb.com/images/headshots/current/60x60/${playerId}.png`} alt="player" style={{ marginRight: "1rem" }} />
 
                 <h1>
                     {/* Player name */}
@@ -40,7 +61,12 @@ const PitcherStats = ({ playerId }) => {
 
                     {/* Player position and current team */}
                     <span style={{ fontSize: "0.8rem", color: "gray", marginLeft: "1rem" }}>
-                        {primaryPosition} | {currentTeam ? currentTeam.name : "N/A"}
+                        {primaryPosition} |{" "}
+                        {currentTeam ? (
+                            <Link to={`/team-pitchers/${currentTeam.id}`}>{currentTeam.name}</Link>
+                        ) : (
+                            "N/A"
+                        )}
                     </span>
 
                 </h1>
@@ -81,7 +107,17 @@ const PitcherStats = ({ playerId }) => {
                     {pitchingStats.splits.filter((split) => split.team).map((split, index) => (
                         <tr key={index}>
                             <td>{split.season}</td>
-                            <td>{split.team ? split.team.name : "N/A"}</td>
+                            <td>
+                                {split.team ? (
+                                    <Link to={`/team-pitchers/${split.team.id}`}>
+                                        <img src={`https://www.mlbstatic.com/team-logos/${split.team.id}.svg`} alt={split.team.name} width="20" height="20" style={{ marginRight: "0.5rem" }} />
+                                        {split.team.name}
+                                    </Link>
+                                ) : (
+                                    "N/A"
+                                )}
+                            </td>
+
                             <td>{split.stat.gamesPlayed}</td>
                             <td>{split.stat.inningsPitched}</td>
                             <td>{split.stat.wins}</td>

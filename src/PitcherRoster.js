@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams, Link } from "react-router-dom";
 
-const RosterPitchers = ({ teamId }) => {
+const RosterPitchers = () => {
+  const { teamId } = useParams();
   const [roster, setRoster] = useState(null);
 
   useEffect(() => {
@@ -23,6 +25,9 @@ const RosterPitchers = ({ teamId }) => {
 
   return (
     <div>
+      <Link to={`/team-hitters/${teamId}`}>
+        <button>View Hitters</button>
+      </Link>
       <table>
         <thead>
           <tr>
@@ -45,7 +50,10 @@ const RosterPitchers = ({ teamId }) => {
         <tbody>
           {pitchers.map((player) => (
             <tr key={player.person.id}>
-              <td>{player.person.fullName}</td>
+              <Link to={`/pitcher-stats/${player.person.id}`}>
+              <img src={`https://content.mlb.com/images/headshots/current/60x60/${player.person.id}.png`} alt="player" style={{ marginRight: "1rem" }} />
+                {player.person.fullName}
+              </Link>
               <td>{player.person.currentAge}</td>
               <td>{player.person.pitchHand.code}</td>
               <td>{player.person.stats && player.person.stats[0].splits && player.person.stats[0].splits[0].stat && player.person.stats[0].splits[0].stat.inningsPitched}</td>

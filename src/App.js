@@ -15,12 +15,12 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/hitter-stats" element={<HitterStats playerId={543807}/>} />
-        <Route path="/pitcher-stats" element={<PitcherStats playerId={660271} />} />
+        <Route path="/hitter-stats/:playerId" element={<HitterStats />} />
+        <Route path="/pitcher-stats/:playerId" element={<PitcherStats />} />
         <Route path="/standings" element={<Standings />} />
         <Route path="/news" element={<News />} />
-        <Route path="team-pitchers" element={<RosterPitchers teamId={141}/>} />
-        <Route path="team-hitters" element={<RosterHitters teamId={141}/>} />
+        <Route path="/team-pitchers/:teamId" element={<RosterPitchers />} />
+        <Route path="/team-hitters/:teamId" element={<RosterHitters />} />
       </Routes>
     </Router>
   );
